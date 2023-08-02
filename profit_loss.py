@@ -37,3 +37,45 @@ def compute_net_profit_difference(data):
 differences = compute_net_profit_difference(netProfitRecords)
 for day, amount in differences:
     print(f"[ NET PROFIT DEFICIT ] DAY: {day:3}, AMOUNT: USD {amount:.2f}")
+
+#--------------- PART 3: Function to find the day with the highest increase in Net Profit --------------#
+
+def find_highest_increase(data):
+    max_increase_day, max_increase_amount = 0, 0
+    prev_net_profit = data[0][1] # Set the initial previous net profit
+    for day, net_profit in data[1:]:
+        increase = net_profit - prev_net_profit
+        if increase > max_increase_amount:
+            max_increase_day, max_increase_amount = day, increase
+        prev_net_profit = net_profit
+    return max_increase_day, max_increase_amount
+
+# Step 4: Find the day and amount of the highest increase when Net Profit is always increasing.
+max_increase_day, max_increase_amount = find_highest_increase(netProfitRecords)
+
+#--------------- PART 4: Function to find the largest net profit deficit --------------#
+
+def find_largest_deficit(data):
+    max_deficit_day, max_deficit_amount = 0, 0
+    prev_net_profit = data[0][1] # Set the initial previous net profit
+    for day, net_profit in data[1:]:
+        deficit = prev_net_profit - net_profit
+        if deficit > max_deficit_amount:
+            max_deficit_day, max_deficit_amount = day, deficit
+        prev_net_profit = net_profit
+    return max_deficit_day, max_deficit_amount
+
+# Step 5: Find the day and amount of the largest net profit deficit.
+max_deficit_day, max_deficit_amount = find_largest_deficit(netProfitRecords)
+
+#--------------- PART 5: Compare the highest increase with the largest deficit --------------#
+
+if max_increase_amount > max_deficit_amount:
+    print("\n[HIGHEST SURPLUS IS GREATER THAN LARGEST DEFICIT]")
+    print(f"[NET PROFIT SURPLUS] NET PROFIT ON EACH DAY IS HIGHER THAN THE PREVIOUS DAY")
+    print(f"[HIGHEST NET PROFIT SURPLUS] DAY: {max_increase_day}, AMOUNT: USD {max_increase_amount:.2f}")
+else:
+    print("\n[LARGEST DEFICIT IS GREATER THAN HIGHEST SURPLUS]")
+    print(f"[LARGEST NET PROFIT DEFICIT] NET PROFIT ON EACH DAY IS LOWER THAN THE PREVIOUS DAY")
+    print(f"[LARGEST NET PROFIT DEFICIT] DAY: {max_deficit_day}, AMOUNT: USD {max_deficit_amount:.2f}")
+
