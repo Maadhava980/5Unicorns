@@ -20,10 +20,11 @@ def profit_loss_function():
             netProfitRecords.append([int(row[0]), float(row[4])])
 
     #--------------- PART 2: Check profit function --------------#
-    #checks if the net profit is increasing more than the previous day everyday or
-    #checks if the net profit is decreasing more than the previous day everyday or
-    #checks if the net profit is fluctuating up and down everyday
     def check_profit_trend(netProfitRecords):
+        """ checks if the net profit is increasing more than the previous day everyday or
+            checks if the net profit is decreasing more than the previous day everyday or
+            checks if the net profit is fluctuating up and down everyday
+        """
         increasing = decreasing = True
         
         for i in range(1, len(netProfitRecords)):
@@ -51,6 +52,7 @@ def profit_loss_function():
             # Print the highest increase in Net profit in the desired format.
             result2 += ("\n[NET PROFIT SURPLUS] PROFIT ON EACH DAY IS HIGHER THAN EACH DAY]")
             result2 += (f"[HIGHEST NET PROFIT SURPLUS] DAY: {max_increase_day}, AMOUNT: USD {max_increase_amount:.2f}\n")
+            #writes the result of this function into the summary report text file in append mode
             with open ("Summary_report.txt", "a") as file:
                 file.write(result2)
 
@@ -68,9 +70,10 @@ def profit_loss_function():
                 return max_deficit_day, max_deficit_amount
 
             max_deficit_day, max_deficit_amount = find_largest_deficit(netProfitRecords)
-            # Print the highest increase in Net profit in the desired format.
+            # Print the largest decrease in Net profit in the desired format.
             result2 +=("\n[NET PROFIT DEFICIT] PROFIT ON EACH DAY IS LOWER THE PREVIOUS DAY]")
             result2 +=(f"[LARGEST NET PROFIT DEFICIT] DAY: {max_deficit_day}, AMOUNT: USD {max_deficit_amount:.2f}\n")
+            #writes the result of this function into the summary report text file in append mode
             with open ("Summary_report.txt", "a") as file:
                 file.write(result2)
 
@@ -78,6 +81,9 @@ def profit_loss_function():
         else:  
             #--------------- PART 5: Profit fluctuate function --------------#   
             def compute_net_profit_difference(data):
+                """This function calculates all the differences from the previous day (deficits). It gets
+                all the results for each specific day and amount.
+                """
                 differences = []
                 prev_net_profit = data[0][1] # Set the initial previous net profit
                 for day, net_profit in data[1:]:
@@ -89,8 +95,10 @@ def profit_loss_function():
 
             # Calculate the differences in net profit only if it's lower than the previous day.
             differences = compute_net_profit_difference(netProfitRecords)
+            # for loop to get all the results for each day and amount
             for day, amount in differences:
                 result2 +=(f"[ NET PROFIT DEFICIT ] DAY: {day:3}, AMOUNT: USD {amount:.2f}\n") 
+            #writes the result of this function into the summary report text file in append mode
             with open ("Summary_report.txt", "a") as file:
                 file.write(result2)
                 
