@@ -1,5 +1,5 @@
 import overheads, cash_on_hand, profit_loss
-# modularization done to call upon main functions from respective modules
+# modularization done to call upon main functions from respective modules 
 def main():
     overhead_result = overheads.overhead_func()
     cash_result = cash_on_hand.cash_on_hand_function()
