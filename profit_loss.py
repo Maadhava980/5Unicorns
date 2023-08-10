@@ -5,7 +5,7 @@ def profit_loss_function():
     #--------------- PART 1: Attaining the records --------------#
 
     # Modify the file path to the "Profit & Loss csv" file
-    fp = Path("PFBGP","csv_reports","Profits-and-loss.csv")
+    fp = Path("project_group B","csv_reports","Profits_and_loss.csv")
 
     # read the csv file to append Day and Net Profit from the csv.
     with fp.open(mode="r", encoding="UTF-8", newline="") as file:

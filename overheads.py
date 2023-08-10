@@ -23,7 +23,7 @@ def overhead_func():
                     highest_overhead_value = overhead
         return highest_overhead_category, highest_overhead_value
 
-    csv_file_path = Path("PFBGP", "csv_reports", "Overheads.csv")
+    csv_file_path = Path("project_group B", "csv_reports", "Overheads.csv")
     highest_category, highest_value = find_highest_overhead_category(csv_file_path)
 
     result = f"[ HIGHEST OVERHEAD ] {highest_category} : {highest_value}%"
