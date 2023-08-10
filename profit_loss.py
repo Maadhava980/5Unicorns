@@ -38,6 +38,8 @@ def profit_loss_function():
         if increasing: 
             #--------------- PART 3: Profit increase function --------------#
             def find_highest_increase(data):
+                """This functions finds out the largest increase in net profit and the day it ocurred 
+                given that net profit is always increasing"""
                 max_increase_day, max_increase_amount = 0, 0
                 prev_net_profit = data[0][1] # Set the initial previous net profit
                 for day, net_profit in data[1:]:
@@ -61,6 +63,8 @@ def profit_loss_function():
             #--------------- PART 4: Profit decrease function --------------#
             # Function to find the largest deficit in net profit
             def find_largest_deficit(data):
+                """This function finds the largest deficit in net profit and the day it happened given that 
+                net profit is always decreasing"""
                 max_deficit_day, max_deficit_amount = 0, 0
                 prev_net_profit = data[0][1] # Set the initial previous net profit
                 for day, net_profit in data[1:]:

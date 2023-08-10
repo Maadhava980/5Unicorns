@@ -41,6 +41,8 @@ def cash_on_hand_function():
         if increasing:
             #--------------- PART 3: COH increase function --------------#
             def find_highest_increase(data):
+                """The functions finds finds the highest increase in cash on hand and the day it happened
+                given that cash on hand is always increasing"""
                 max_increase_day, max_increase_amount = 0, 0
                 prev_cash_on_hand = data[0][1] # Set the initial previous cash on hand
                 for day, cash_on_hand in data[1:]:
@@ -64,6 +66,8 @@ def cash_on_hand_function():
             #--------------- PART 4: COH decrease function --------------#
             # Function to find the day and amount of largest decrease 
             def find_largest_deficit(data):
+                """This function finds the largest deficit in cash on hand and the day it ocurred given that cash 
+                 on hand is always decreasing """
                 max_deficit_day, max_deficit_amount = 0, 0
                 prev_cash_on_hand = data[0][1] # Set the initial previous cash on hand
                 for day, cash_on_hand in data[1:]:

@@ -3,6 +3,7 @@ def overhead_func():
     import csv
 
     def find_highest_overhead_category(csv_file_path):
+        """This function uses inequalities to determine which category has the highest overhead"""
         # read the csv file to append overhead category codes from the csv.
         with csv_file_path.open(mode="r", encoding="UTF-8", newline="") as file:
             reader = csv.reader(file)
