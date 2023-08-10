@@ -59,9 +59,10 @@ def cash_on_hand_function():
             with open ("Summary_report.txt","a") as file:
                 file.write(result1)
 
-        # if decreasing everyday, goes to the next function to find largest deficit and day
+        # if decreasing everyday, this function is  used to find largest deficit and day
         elif decreasing:
             #--------------- PART 4: COH decrease function --------------#
+            # Function to find the day and amount of largest decrease 
             def find_largest_deficit(data):
                 max_deficit_day, max_deficit_amount = 0, 0
                 prev_cash_on_hand = data[0][1] # Set the initial previous cash on hand
@@ -80,7 +81,7 @@ def cash_on_hand_function():
             with open ("Summary_report.txt","a") as file:
                 file.write(result1)
 
-        # fluctuate everyday, goes to this function that finds the deficit for each day there ere differences
+        # If cash on hand is fluctuating everyday, this function finds all the days with deficits
         else:
             #--------------- PART 5: COH fluctuate function --------------#
             def compute_cash_on_hand_difference(data):
@@ -107,6 +108,7 @@ def cash_on_hand_function():
 
             return result1 
         return result1
+    # call on the check_COH_trend function and capture its result
     COH_trend_result = check_COH_trend(cashOnHandRecords)
     return COH_trend_result
 
