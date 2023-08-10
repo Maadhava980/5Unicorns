@@ -26,12 +26,15 @@ def cash_on_hand_function():
     def check_COH_trend(CashOnHandRecords):
         increasing = decreasing = True
         
-        for i in range(1, len(CashOnHandRecords)):
+        #for loop to iterate over the records list. Uses the len function and 
+        for i in range(1, len(CashOnHandRecords)): 
+            #checks if checks if the cash on hand value at the current index is greater than the previous index 
             if CashOnHandRecords[i][1] > CashOnHandRecords[i - 1][1]:
                 decreasing = False
+            #checks if the cash on hand value at the current index is lower than the previous index
             elif CashOnHandRecords[i][1] < CashOnHandRecords[i - 1][1]:
                 increasing = False
-        result1 = ''
+        result1 = '' #result1 as an empty string
         
         # if increasing everyday, goes to the next function to find highest increase and day
         if increasing:
@@ -68,7 +71,7 @@ def cash_on_hand_function():
                 return max_deficit_day, max_deficit_amount
 
             max_deficit_day, max_deficit_amount = find_largest_deficit(cashOnHandRecords)
-            # Print the highest increase in Cash-on-Hand in the desired format.
+            # Print the largest decrease in Cash-on-Hand in the desired format.
             result1 += ("\n[CASH DEFICIT] CASH ON EACH DAY IS LOWER THAN THE PREVIOUS DAY")
             result1 += (f"[HIGHEST CASH DEFICIT] DAY: {max_deficit_day}, AMOUNT: USD {max_deficit_amount:.2f}\n")
             with open ("Summary_report.txt","a") as file:
@@ -89,7 +92,8 @@ def cash_on_hand_function():
 
             # Calculate the differences in Cash-on-Hand only if it's lower than the previous day.
             differences = compute_cash_on_hand_difference(cashOnHandRecords)
-            for day, amount in differences:
+            #for loop to get all the results for each day and amount
+            for day, amount in differences: 
                 result1 += (f"[ CASH DEFICIT ] DAY: {day:3}, AMOUNT: USD {amount:.2f}\n")
             with open ("Summary_report.txt","a") as file:
                 file.write(result1)
