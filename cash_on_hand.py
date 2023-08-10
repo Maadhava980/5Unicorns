@@ -20,18 +20,19 @@ def cash_on_hand_function():
             cashOnHandRecords.append([int(row[0]), float(row[1])])
 
     #--------------- PART 2: Check COH trend --------------# 
-    # checks if the net profit is increasing more than the previous day everyday or
-    # checks if the net profit is decreasing more than the previous day everyday or
-    # checks if the net profit is fluctuating up and down everyday
     def check_COH_trend(CashOnHandRecords):
+        """ checks if the net profit is increasing more than the previous day everyday or
+            checks if the net profit is decreasing more than the previous day everyday or
+            checks if the net profit is fluctuating up and down everyday
+            """
         increasing = decreasing = True
         
-        #for loop to iterate over the records list. Uses the len function and 
+        # for loop to iterate over the records list. Uses the len function and 
         for i in range(1, len(CashOnHandRecords)): 
-            #checks if checks if the cash on hand value at the current index is greater than the previous index 
+            # checks if the cash on hand value at the current index is greater than the previous index 
             if CashOnHandRecords[i][1] > CashOnHandRecords[i - 1][1]:
                 decreasing = False
-            #checks if the cash on hand value at the current index is lower than the previous index
+            # checks if the cash on hand value at the current index is lower than the previous index
             elif CashOnHandRecords[i][1] < CashOnHandRecords[i - 1][1]:
                 increasing = False
         result1 = '' #result1 as an empty string
@@ -54,12 +55,13 @@ def cash_on_hand_function():
             # Print the highest increase in Cash-on-Hand in the desired format.
             result1 += ("\n[CASH SURPLUS] CASH ON EACH DAY IS HIGHER THAN THE PREVIOUS DAY")
             result1 += (f"[HIGHEST CASH SURPLUS] DAY: {max_increase_day}, AMOUNT: USD {max_increase_amount:.2f}\n")
+            #writes the result of this function into the summary report text file in append mode
             with open ("Summary_report.txt","a") as file:
                 file.write(result1)
 
         # if decreasing everyday, goes to the next function to find largest deficit and day
         elif decreasing:
-  #--------------- PART 4: COH decrease function --------------#
+            #--------------- PART 4: COH decrease function --------------#
             def find_largest_deficit(data):
                 max_deficit_day, max_deficit_amount = 0, 0
                 prev_cash_on_hand = data[0][1] # Set the initial previous cash on hand
@@ -74,6 +76,7 @@ def cash_on_hand_function():
             # Print the largest decrease in Cash-on-Hand in the desired format.
             result1 += ("\n[CASH DEFICIT] CASH ON EACH DAY IS LOWER THAN THE PREVIOUS DAY")
             result1 += (f"[HIGHEST CASH DEFICIT] DAY: {max_deficit_day}, AMOUNT: USD {max_deficit_amount:.2f}\n")
+            #writes the result of this function into the summary report text file in append mode
             with open ("Summary_report.txt","a") as file:
                 file.write(result1)
 
@@ -81,6 +84,9 @@ def cash_on_hand_function():
         else:
             #--------------- PART 5: COH fluctuate function --------------#
             def compute_cash_on_hand_difference(data):
+                """this function calculates the fluctuations aka all the cash deficits we had. it calculates all the
+                differences of the previous day. For each day it prints out the day and the deficit of that specific day
+                """
                 differences = []
                 prev_cash_on_hand = data[0][1] # Set the initial previous cash on hand
                 for day, cash_on_hand in data[1:]:
@@ -95,6 +101,7 @@ def cash_on_hand_function():
             #for loop to get all the results for each day and amount
             for day, amount in differences: 
                 result1 += (f"[ CASH DEFICIT ] DAY: {day:3}, AMOUNT: USD {amount:.2f}\n")
+            #writes the result of this function into the summary report text file in append mode
             with open ("Summary_report.txt","a") as file:
                 file.write(result1)
 
