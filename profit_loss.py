@@ -56,9 +56,10 @@ def profit_loss_function():
             with open ("Summary_report.txt", "a") as file:
                 file.write(result2)
 
-        # if decreasing everyday, goes to the next function that finds the largest deficit and day
+        # if profit is decreasing everyday, goes to the next function that finds the largest deficit and day
         elif decreasing:
             #--------------- PART 4: Profit decrease function --------------#
+            # Function to find the largest deficit in net profit
             def find_largest_deficit(data):
                 max_deficit_day, max_deficit_amount = 0, 0
                 prev_net_profit = data[0][1] # Set the initial previous net profit
@@ -77,7 +78,7 @@ def profit_loss_function():
             with open ("Summary_report.txt", "a") as file:
                 file.write(result2)
 
-        # fluctuate everyday goes to this function that finds the deficits on each day where there were differences
+        # If profit is fluctuating every day , find the days with profit deficits
         else:  
             #--------------- PART 5: Profit fluctuate function --------------#   
             def compute_net_profit_difference(data):
@@ -104,6 +105,7 @@ def profit_loss_function():
                 
             return result2
         return result2
+    # call the check_profit_trend function and capture its result
     profit_trend_result=check_profit_trend(netProfitRecords)
     return profit_trend_result
 
